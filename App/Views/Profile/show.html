@@ -9,19 +9,23 @@
             <h1>Profile</h1>
 
             <dl class="dl-horizontal">
+                <dt><img src="/img/{{ user.avatar }}" alt="avatar" width="250px"></dt>
                 <dt>Name</dt>
                 <dd>{{ user.name }}</dd>
                 <dt>email</dt>
                 <dd>{{ user.email }}</dd>
             </dl>
-
-            <a href="/profile/edit">Edit</a>
+            {% if current_user.id == user.id %}
+                <a href="/profile/edit">Edit</a>
+            {% endif %}
         </div>
         <div class="col-8">
             <h1>Danh sách bài viết cá nhân</h1>
+            {% if current_user.id == user.id %}
             <div>
                 <a href="/posts/new">Thêm bài viết</a>
             </div>
+            {% endif %}
             <div>
                 <ul class="list-group list-group-flush">
                     {% for post in posts %}

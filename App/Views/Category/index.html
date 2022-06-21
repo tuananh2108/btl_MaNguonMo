@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Thể loại bài viết{% endblock %}
+
+{% block body %}
+
+<div class="row">
+    <form class="form-inline" method="POST" {% if edit_path %}action="{{ edit_path }}"{% else %}action="/categories/create"{% endif %}>
+        <div class="form-group">
+<!--            <label for="inputName">Tên thể loại:</label>-->
+            <input type="text" name="name" value="{{ category_edit.name }}" id="inputNameCategory" class="form-control" placeholder="Tên thể loại">
+        </div>
+        <input type="hidden" name="id" value="{{ category_edit.id }}">
+        <button type="submit" class="btn btn-primary">
+            {% if edit_path %}
+                Cập nhật
+            {% else %}
+                Thêm mới
+            {% endif %}
+        </button>
+    </form>
+    <table class="table">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Ngày tạo</th>
+            <th scope="col">Ngày cập nhật</th>
+            <th scope="col">Chức năng</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for category in categories %}
+        <tr>
+            <th scope="row">{{ category.id }}</th>
+            <td>{{ category.name }}</td>
+            <td>{{ category.created_at }}</td>
+            <td>{{ category.updated_at }}</td>
+            <td>
+                <a href="/categories/edit?id={{ category.id }}">Sửa</a>
+                <a href="/categories/destroy?id={{ category.id }}">Xóa</a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -50,8 +50,11 @@
         </ul>
     {% endif %}
 
-    <form method="post" id="formProfile" action="/profile/update">
-
+    <form method="post" id="formProfile" action="/profile/update" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="inputAvatar">Avatar</label>
+            <input id="inputAvatar" type="file" name="avatar" value="{{ user.avatar }}" class="form-control" />
+        </div>
         <div class="form-group">
             <label for="inputName">Name</label>
             <input id="inputName" name="name" placeholder="Name" value="{{ user.name }}" required class="form-control" />

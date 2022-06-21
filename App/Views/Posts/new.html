@@ -6,11 +6,15 @@
 
 <h1>New Posts</h1>
 
-<form method="post" action="/posts/create">
+<form method="post" action="/posts/create" enctype="multipart/form-data">
 
     <div class="form-group">
         <label for="inputTitle">Title</label>
         <input id="inputTitle" name="title" placeholder="Title Posts" autofocus required class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="inputImg">Image</label>
+        <input id="inputImg" type="file" name="img_title" required class="form-control" />
     </div>
     <div class="form-group">
         <label for="inputContent">Content</label>

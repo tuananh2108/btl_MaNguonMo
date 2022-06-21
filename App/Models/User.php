@@ -413,7 +413,7 @@ class User extends \Core\Model
     public function updateProfile($data)
     {
         $this->name = $data['name'];
-        $this->email = $data['email'];
+        $this->avatar = $data['avatar'];
 
         // Only validate and update the password if a value provided
         if ($data['password'] != '') {
@@ -428,7 +428,7 @@ class User extends \Core\Model
 
             $sql = 'UPDATE users
                     SET name = :name,
-                        email = :email,
+                        avatar = :avatar,
                         updated_at = :updated_at';
 
             // Add password if it's set
@@ -443,7 +443,7 @@ class User extends \Core\Model
             $stmt = $db->prepare($sql);
 
             $stmt->bindValue(':name', $this->name, PDO::PARAM_STR);
-            $stmt->bindValue(':email', $this->email, PDO::PARAM_STR);
+            $stmt->bindValue(':avatar', $this->avatar, PDO::PARAM_STR);
             $stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
 
             // Add password if it's set

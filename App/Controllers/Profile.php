@@ -35,6 +35,9 @@ class Profile extends Authenticated
      */
     public function showAction()
     {
+        if(isset($_GET['id'])) {
+            $this->user = User::findByID($_GET['id']);
+        }
         if (isset($_SESSION['user_id'])) {
             $user_id = $_SESSION['user_id'];
         }
@@ -64,6 +67,7 @@ class Profile extends Authenticated
      */
     public function updateAction()
     {
+        Auth::uploadImage('avatar');
         if ($this->user->updateProfile($_POST)) {
 
             Flash::addMessage('Changes saved');

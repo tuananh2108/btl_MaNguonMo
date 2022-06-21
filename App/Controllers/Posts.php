@@ -26,7 +26,9 @@ class Posts extends \Core\Controller
     }
 
     public function createAction() {
+        Auth::uploadImage('img_title');
         $post = new Post($_POST);
+
         if ($post->save()) {
             Flash::addMessage('Successfully added new!');
         } else {
