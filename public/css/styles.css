@@ -210,7 +210,6 @@ form .button-search:hover {
 .phobien-a:hover {
     color: #ffc107;
 }
-
 .card_img:hover {
     width: 100%;
     height: 100%;
@@ -280,4 +279,7 @@ form .button-search:hover {
     left: 0;
     top: 38px;
     width: 100%;
+}
+a.title_a:hover{
+    color: #ffc107;
 }

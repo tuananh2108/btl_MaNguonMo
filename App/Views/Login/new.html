@@ -3,10 +3,11 @@
 {% block title %}Log in{% endblock %}
 
 {% block body %}
-<div class="authincation h-100 mt-5">
-    <div class="container-fluid h-100">
+<body>
+<div class=" h-100 mt-5">
+    <div class="container-fluid h-100 bg-white p-5" style="width: 600px;border-radius: 5px">
         <div class="row justify-content-center h-100 align-items-center">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="authincation-content">
                     <div class="row no-gutters">
                         <div class="col-xl-12">
@@ -36,7 +37,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <a href="/password/forgot">Forgot password?</a>
+                                            <a href="/password/forgot" class="text-decoration-none">Forgot password?</a>
                                         </div>
                                     </div>
 
@@ -46,7 +47,7 @@
 
                                     <div class="d-flex mt-3">
                                         <p>Bạn chưa có tài khoản?</p>
-                                        <a href="/signup/new"> Đăng ký</a>
+                                        <a href="/signup/new" class="text-decoration-none pl-1"> Đăng ký</a>
                                     </div>
                                 </form>
 
@@ -58,6 +59,8 @@
         </div>
     </div>
 </div>
+</body>
+
 
 
 

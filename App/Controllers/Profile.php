@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\Folow;
 use App\Models\Post;
 use App\Models\User;
 use \Core\View;
@@ -35,16 +36,57 @@ class Profile extends Authenticated
      */
     public function showAction()
     {
+        //set user_id
         if(isset($_GET['id'])) {
             $this->user = User::findByID($_GET['id']);
+            $user_id = $_GET['id'];
+            $folowed = Folow::getQtyFolowed($user_id);
+            $folowing = Folow::getQtyFolowing($user_id);
         }
-        if (isset($_SESSION['user_id'])) {
-            $user_id = $_SESSION['user_id'];
+        else {
+            if (isset($_SESSION['user_id'])) {
+                $user_id = $_SESSION['user_id'];
+                $folowed = Folow::getQtyFolowed($user_id);
+                $folowing = Folow::getQtyFolowing($user_id);
+            }
         }
+
+        //check folowed
+        if(isset($_COOKIE['folowing_id'])) {
+            $check_folowing = json_decode($_COOKIE['folowing_id'], true);
+            foreach ($check_folowing as $val) {
+                if(isset($_GET['id'])){
+                    $qty = Folow::checkFolow($_SESSION['user_id'], $_GET['id'], $val);
+
+                    if($qty[0]['qty'] == 0) {
+                        $checked = 'true';
+                    }
+                    else {
+                        $checked = 'false';
+                    }
+                }
+                else $checked = 'default';
+            }
+        }
+        else $checked = 'default';
+
+        //pagination
+        if (!isset($_GET['page'])) {
+            $page = '';
+        }
+        else {
+            $page = $_GET['page'];
+        }
+        $posts = Post::getAllByUserId($user_id, $page);
+        $qtyPost = Post::getQtyFieldWithUserId($user_id);
 
         View::renderTemplate('Profile/show.html', [
             'user' => $this->user,
-            'posts' => Post::getAllByUserId($user_id)
+            'posts' => $posts,
+            'qtyPost' => $qtyPost,
+            'folowed' => $folowed,
+            'folowing' => $folowing,
+            'checked' => $checked
         ]);
     }
 
@@ -67,15 +109,13 @@ class Profile extends Authenticated
      */
     public function updateAction()
     {
-        Auth::uploadImage('avatar');
+        $_POST['avatar'] = '';
+        Auth::setImageName('avatar');
         if ($this->user->updateProfile($_POST)) {
-
-            Flash::addMessage('Cập nhật thành công');
-
+            Auth::uploadImage('avatar');
+            Flash::addMessage('Cập nhật thành công!');
             $this->redirect('/profile/show');
-
         } else {
-
             View::renderTemplate('Profile/edit.html', [
                 'user' => $this->user
             ]);

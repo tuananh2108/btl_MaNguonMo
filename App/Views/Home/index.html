@@ -7,21 +7,23 @@
     <div class="col-8">
         <ul class="list-group list-group-flush bdr-ul">
             {% for post in posts %}
-            <li class="list-group-item bg-F3EDFF border" style="padding: 0;">
-                <div class="card mb-3 border border-primary shadow" style="padding: 1px 0px;">
-                    <div class="row no-gutters bg-F3EDFF d-flex justify-content-between">
+            <li class="list-group-item bg-F3EDFF border" style="">
+                <div class="card mb-3 border border-primary shadow" style="padding: 1px 0px;  border-radius: 15px;">
+                    <div class="row no-gutters bg-F3EDFF d-flex justify-content-between" style="border-radius: 15px;">
                         <div class="col-md-4" style="width: 225px; max-height: 150px;">
-                            <a href="/posts/show?id={{ post.id }}" class="card-link"><img src="/img/{{ post.img_title }}" alt="{{ post.title }}" width="200px"></a>
+                            <a href="/posts/show?id={{ post.id }}" class="card-link"><img src="/img/{{ post.img_title }}" alt="{{ post.title }}" class="img_info" style="border-radius: 15px;"></a>
                         </div>
                         <div class="col-md-8 flex-grow-1 d-flex flex-column">
                             <div class="card-body bg-F3EDFF bdr-info-post mr-3">
-                                <h5 class="card-title font_title-post"><a href="/posts/show?id={{ post.id }}">{{ post.title }}</a></h5>
+                                <h5 class="card-title font_title-post">
+                                    <a href="/posts/show?id={{ post.id }}"  class="text-decoration-none title_a" style="color: black;">{{ post.title }}</a>
+                                </h5>
                                 <div class="card-subtitle mb-2 text-muted d-flex justify-content-between align-items-center">
-                                        <a href="#" class="d-inline py-2 ml-2 font_info-post text-decoration-none d-flex justify-content-between align-items-center" style="color: black;">
+                                        <a href="/profile/show?id={{ post.user_id }}" class="d-inline py-2 ml-2 font_info-post text-decoration-none d-flex justify-content-between align-items-center" style="color: black;">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
                                                 <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
                                             </svg>
-                                            <span class="ml-2">{{ post.name }}</span>
+                                            <span class="ml-2">{{ post.users_name }}</span>
                                         </a>
                                     <div class="d-inline mr-3 py-2 font_info-post d-flex justify-content-between align-items-center" style="color: black;">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
@@ -30,7 +32,7 @@
                                         <span class="ml-2">{{ post.created_at }}</span>
                                     </div>
                                 </div>
-                                <p class="ml-2" style="height:24px; width: 422px;white-space: nowrap;overflow:hidden;text-overflow:ellipsis;">{{ post.content }}</p>
+                                <p class="ml-2" style="height:24px; width: 422px;white-space: nowrap;overflow:hidden;text-overflow:ellipsis; padding-right: 1.0rem;">{{ post.content }}</p>
                                 <div class="d-flex flex-row-reverse mb-2 mr-2">
                                     <a href="/posts/show?id={{ post.id }}" class="card-link docthem">
                                         Xem chi tiết
@@ -53,9 +55,15 @@
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
-                    <li class="page-item li-phobien"><a class="page-link text-center" href="#">1</a></li>
-                    <li class="page-item li-phobien"><a class="page-link text-center" href="#">2</a></li>
-                    <li class="page-item li-phobien"><a class="page-link text-center" href="#">3</a></li>
+                    {% if (qtyPost[0].qty/5)|round <= 0 %}
+                        {% set qtyPost = 1 %}
+                    {% else %}
+                        {% set qtyPost = (qtyPost[0].qty/5)|round %}
+                    {% endif %}
+
+                    {% for i in 1..qtyPost %}
+                        <li class="page-item li-phobien"><a class="page-link text-center" href="page={{ i }}">{{ i }}</a></li>
+                    {% endfor %}
                     <li class="page-item li-phobien">
                         <a class="page-link text-center" href="#" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>

@@ -37,8 +37,9 @@ $router->add('login', ['controller' => 'Login', 'action' => 'new']);
 $router->add('logout', ['controller' => 'Login', 'action' => 'destroy']);
 $router->add('password/reset/{token:[\da-f]+}', ['controller' => 'Password', 'action' => 'reset']);
 $router->add('signup/activate/{token:[\da-f]+}', ['controller' => 'Signup', 'action' => 'activate']);
-$router->add('posts/new', ['controller' => 'Posts', 'action'=>'new']);
-$router->add('posts/show', ['controller' => 'Posts', 'action'=>'show']);
+$router->add('search', ['controller' => 'Search', 'action'=>'search']);
+$router->add('users/folow', ['controller' => 'Users', 'action'=>'folow']);
+$router->add('users/unfolow', ['controller' => 'Users', 'action'=>'unfolow']);
 $router->add('{controller}/{action}');
 
 $router->dispatch($_SERVER['QUERY_STRING']);

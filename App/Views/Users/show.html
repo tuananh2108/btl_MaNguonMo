@@ -18,14 +18,18 @@
       </tr>
       </thead>
       <tbody>
-        <th scope="row">1</th>
-        <td><img src="/img/gaixinh.jpg" alt="" style="width:40px;height: 40px; border-radius: 100%;"></td>
-        <td>Truong</td>
-        <td>truong@gmail.com</td>
-        <td>11/02/2022</td>
+        {% for user in users %}
+        <tr>
+        <th scope="row">{{ user.id }}</th>
+        <td><img src="/img/{{ user.avatar }}" alt="" style="width:40px;height: 40px; border-radius: 100%;"></td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.created_at }}</td>
         <td class="" style="">
-          <a href="/categories/destroy?id={{ category.id }}" class="text-decoration-none" style="color: red; padding-left: 5px"><i class="ti-close"></i></a>
+          <a href="/users/destroy?id={{ user.id }}" class="text-decoration-none" style="color: red; padding-left: 5px"><i class="ti-close"></i></a>
         </td>
+        </tr>
+        {% endfor %}
       </tbody>
     </table>
   </div>

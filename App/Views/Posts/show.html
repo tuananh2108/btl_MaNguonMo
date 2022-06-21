@@ -7,25 +7,23 @@
 <div class="col-8 bg-F3EDFF" style="margin-bottom: 16px; border-radius: 15px;">
     <div class="content-posts">
         <div class="bg-white" style="border-radius: 30px;">
-            <div class="sub-header d-flex mt-3 bg-white" style="border-radius: 22px;">
-                <div style="width: 250px; max-height: 100%; border-radius: 15px;">
-                    <img src="..." alt="alt" class="img_info">
+            <div class="sub-header d-flex mt-3 bg-white" style="">
+                <div style="width: 250px; height: 150px;border-radius: 22px;">
+                    <img src="/img/{{ post[0].img_title }}" alt="alt" class="img_info">
                 </div>
                 <div class="flex-grow-1" style="border-radius: 22px;">
                     <div class="color-6B6B6B" style="margin-left: 16px;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-folder-fill" viewBox="0 0 16 16">
                             <path d="M9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.825a2 2 0 0 1-1.991-1.819l-.637-7a1.99 1.99 0 0 1 .342-1.31L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3zm-8.322.12C1.72 3.042 1.95 3 2.19 3h5.396l-.707-.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981l.006.139z"/>
                         </svg>
-                        <span class="" style="color: #6B6B6B; font-size: 16px; font-weight: bold;">Thể Loại</span>
+                        <a href="/search?keyword={{ post[0].category_name }}"><span class="" style="color: #6B6B6B; font-size: 16px; font-weight: bold;">{{ post[0].category_name }}</span></a>
                     </div>
                     <p class="ml-3 mt-2 mb-2" style="font-family: 'Montserrat';
                                                             font-style: normal;
                                                             font-weight: bold;
                                                             font-size: 28px;
                                                             line-height: 32px;
-                                                            color: #000000;"
-
-                    >
+                                                            color: #000000;">
                         {{ post[0].title }}
                     </p>
                     <div class="d-flex flex-column">
@@ -34,7 +32,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
                                     <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
                                 </svg>
-                                <span class="pl-2" style="font-weight: bold;">{{ post[0].name }}</span>
+                                <a href="/profile/show?id={{ post[0].user_id }}"><span class="pl-2" style="font-weight: bold;">{{ post[0].users_name }}</span></a>
                             </div>
                             <div class="p-2 d-flex justify-content-center align-items-center color-6B6B6B mr-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
@@ -59,27 +57,36 @@
         </div>
 
         <div class="comment-container bg-white p-3 mb-3" style="border-radius: 15px; font-size: 0.75rem;">
-            <div class="d-flex justify-content-center align-items-center">
-                <a href="" class="text-decoration-none">Đăng nhập để có thể bình luận!</a>
-            </div>
-            <div class="comment d-flex justify-content-between align-items-center">
-                <div class="rounded-circle" style="width: 40px; height: 40px; border-radius: 100%;">
-                    <img src="" alt="avt" style="width: 100%; height: 100%; object-fit: cover;">
+            {% if current_user %}
+                <div class="comment d-flex justify-content-between align-items-center">
+                    <div class="rounded-circle" style="width: 40px; height: 40px; border-radius: 100%;">
+                        <img src="/img/{{ current_user.avatar }}" alt="avt" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <form action="/comments/create" method="post">
+                        <input class="flex-grow-1 ml-3 px-3 py-1 bg-light" style="border-radius: 30px; width: 540px;" type="text" name="content" placeholder="Nội dung...">
+                        <input type="hidden" name="user_id" value="{{ current_user.id }}">
+                        <input type="hidden" name="post_id" value="{{ post[0].id }}">
+                        <input class="px-3 py-1 text-white bg-F3EDFF ml-3" style="background-color: #00B4AA; border-radius: 12px;" type="submit" value="Đăng">
+                    </form>
                 </div>
-                <input class="flex-grow-1 ml-3 px-3 py-1 bg-light" style="border-radius: 30px;" type="text" name="comment" id="" placeholder="Nội dung...">
-                <input class="px-3 py-1 text-white bg-F3EDFF ml-3" style="background-color: #00B4AA; border-radius: 12px;" type="button" value="Đăng"></input>
-            </div>
+            {% else %}
+                <div class="d-flex justify-content-center align-items-center">
+                    <a href="/signup/new" class="text-decoration-none">Đăng nhập để có thể bình luận!</a>
+                </div>
+            {% endif %}
+            {% for comment in comments %}
             <div class="list-comment mt-2">
                 <div class="comment-item d-flex justify-content-start">
                     <div class="rounded-circle d-flex flex-column" style="width: 40px; height: 40px; border-radius: 100%;">
-                        <img src="" alt="avt" style="width: 100%; height: 100%; object-fit: cover;">
+                        <img src="/img/{{ comment.users_avatar }}" alt="avt" style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                     <div class="ml-3 px-2 py-1" style="background-color: #f0f2f5;border-radius: 15px;">
-                        <span style="font-weight: 500;">Tên: Nguyen Dan Truong</span>
-                        <p style="margin-bottom: 5px;">Nội dung bình luận Nội dung bình luận Nội dung bình luận Nội dung bình luận Nội dung bình luậnNội dung bình luận</p>
+                        <span style="font-weight: 500;">{{ comment.users_name }}</span>
+                        <p style="margin-bottom: 5px;">{{ comment.content }}</p>
                     </div>
                 </div>
             </div>
+            {% endfor %}
         </div>
     </div>
 </div>

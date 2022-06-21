@@ -151,27 +151,38 @@ class Auth
         }
     }
 
+    public static function setImageName($file) {
+        if(isset($_FILES[$file]['name'])) {
+            $img_name = $_FILES[$file]['name'];
+            $img_size = $_FILES[$file]['size'];
+            $tmp_name = $_FILES[$file]['tmp_name'];
+            $error = $_FILES[$file]['error'];
+
+            if($error === 0) {
+                $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
+                $img_ex_lc = strtolower($img_ex);
+
+                $allowed_exs = array("jpg", "jpeg", "png");
+
+                if(in_array($img_ex_lc, $allowed_exs)) {
+                    $new_img_name = uniqid("IMG-", true).'.'.$img_ex_lc;
+                    $_POST[$file] = $new_img_name;
+                }
+                else {
+                    echo "Lỗi";
+                }
+            }
+        }
+        else {
+            $_POST[$file] = '';
+        }
+    }
+
     public static function uploadImage($file) {
-        $img_name = $_FILES[$file]['name'];
-        $img_size = $_FILES[$file]['size'];
-        $tmp_name = $_FILES[$file]['tmp_name'];
-        $error = $_FILES[$file]['error'];
-
-        if($error === 0) {
-            $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
-            $img_ex_lc = strtolower($img_ex);
-
-            $allowed_exs = array("jpg", "jpeg", "png");
-
-            if(in_array($img_ex_lc, $allowed_exs)) {
-                $new_img_name = uniqid("IMG-", true).'.'.$img_ex_lc;
-                $img_upload_path = '../public/img/'.$new_img_name;
-                move_uploaded_file($tmp_name, $img_upload_path);
-                $_POST[$file] = $new_img_name;
-            }
-            else {
-                echo "Lỗi";
-            }
+        if($_POST[$file] != '') {
+            $tmp_name = $_FILES[$file]['tmp_name'];
+            $img_upload_path = '../public/img/'.$_POST[$file];
+            move_uploaded_file($tmp_name, $img_upload_path);
         }
     }
 }

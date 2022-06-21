@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
 use \Core\View;
 
@@ -20,11 +21,21 @@ class Home extends \Core\Controller
      */
     public function indexAction()
     {
-        $posts = Post::getAll();
+        if (!isset($_GET['page'])) {
+            $page = '';
+        }
+        else {
+            $page = $_GET['page'];
+        }
+        $posts = Post::getAll($page);
+        $qtyPost = Post::getQtyField();
         $popular_posts = Post::getPopularPosts();
+        $categories = Category::getAll();
         View::renderTemplate('Home/index.html', [
             'posts' => $posts,
-            'popular_posts' => $popular_posts
+            'qtyPost' => $qtyPost,
+            'popular_posts' => $popular_posts,
+            'categories' => $categories
         ]);
     }
 }

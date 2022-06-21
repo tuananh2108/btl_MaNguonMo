@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Auth;
+use App\Flash;
 use \Core\View;
 use \App\Models\User;
 
@@ -38,7 +39,8 @@ class Signup extends \Core\Controller
             $user = User::authenticate($_POST['email'], $_POST['password']);
             $remember_me = isset($_POST['remember_me']);
             Auth::login($user, $remember_me);
-            $this->redirect('/signup/success');
+            Flash::addMessage('Đăng ký thành công!');
+            $this->redirect('/');
 
         } else {
 
