@@ -1,18 +1,97 @@
-/*body {*/
-/*    margin-top: 0em;*/
-/*}*/
-/*
-.alert {
-    border: 1px solid #ccc;
-    padding: 6px;
+.background{
+    background: linear-gradient(to right,#4daf54,#3d8880);
 }
-.alert-info {
-    background-color: #d9edf7;
+.card-profile ,.card-postsList{
+    height: 500px;
+    background: #242628;
+    border-radius: 10px;
+    text-align: center;
+    overflow: hidden;
 }
-.alert-success {
-    background-color: #dff0d8;
+
+.card_img{
+    width: 160px;
+    height: 160px;
+    border: 4px solid #f2726a;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto;
+    transform: translateY(25px);
+    transition: 0.5s;
 }
-.alert-warning {
-    background-color: #fcf8e3;
+
+.img-info{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    object-position: center;
 }
-*/
+
+.card_img:hover{
+    width: 100%;
+    height: 100%;
+    border-radius: unset;
+    transform: unset;
+    border: none;
+}
+
+.card-profile p{
+    color: #f2726a;
+}
+
+.card-profile button,.card-postsList button{
+    width: 120px;
+    height: 40px;
+    border: 1px solid #f2726a;
+    color: #f2726a;
+    background: transparent;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+
+.card-editDel button{
+    width: 60px;
+    height: 30px;
+}
+
+.card-profile button:hover , .card-postsList button:hover{
+    background: #f2726a;
+    color: white;
+
+}
+
+/* CSS Form cập nhật */
+.card-editProfile{
+    width: 500px;
+    height: 100%;
+    border: none;
+    border-radius: 10px;
+    background: white;
+    padding: 40px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.form-input{
+    width: 100%;
+    position: relative;
+    margin-top: 40px;
+}
+
+.form-input input{
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #adadad;
+}
+
+.form-input .line{
+    position: absolute;
+    border-bottom: 2px solid #2691d9;
+    left: 0;
+    top: 38px;
+    width: 100%;
+}
