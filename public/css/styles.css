@@ -1,23 +1,35 @@
-/*body {*/
-/*    margin-top: 0em;*/
-/*}*/
-/*
-.alert {
-    border: 1px solid #ccc;
-    padding: 6px;
+.background {
+    background: linear-gradient(to right, #4daf54, #3d8880);
 }
-.alert-info {
-    background-color: #d9edf7;
-}
-.alert-success {
-    background-color: #dff0d8;
-}
-.alert-warning {
-    background-color: #fcf8e3;
-}
-*/
 
-.logo_image{
+.card-profile,
+.card-postsList {
+    height: 500px;
+    background: #242628;
+    border-radius: 10px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.card_img {
+    width: 160px;
+    height: 160px;
+    border: 4px solid #f2726a;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto;
+    transform: translateY(25px);
+    transition: 0.5s;
+}
+
+.img-info {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    object-position: center;
+}
+
+.logo_image {
     width: 43px;
     height: 56px;
 }
@@ -33,41 +45,51 @@ body {
     0% {
         background-position: 0% 50%;
     }
+
     50% {
         background-position: 100% 50%;
     }
+
     100% {
         background-position: 0% 50%;
     }
 }
+
 .nav-item:hover .nav-link {
     background: #ffc107;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-.min-w{
+
+.min-w {
     min-width: 100px;
     display: block;
 }
+
 .form-inline button:hover {
     background-color: #ffc107;
 }
+
 .bg-ffc107 {
     background-color: #ffc107;
 }
-.text-ffc107{
+
+.text-ffc107 {
     color: #ffc107;
     opacity: 0.7;
 }
-.dropdown-item:hover{
+
+.dropdown-item:hover {
     background-color: #ffc107;
-    color: white!important;
+    color: white !important;
 }
-.bdr-ul{
+
+.bdr-ul {
     border-radius: 15px;
     margin-bottom: 20px;
 }
-form .button-search{
+
+form .button-search {
     min-width: 80px;
     padding: 8px;
     background-color: #00B4AA;
@@ -77,7 +99,8 @@ form .button-search{
     font-weight: bold;
     font-size: 16px;
 }
-.docthem{
+
+.docthem {
     display: block;
     width: 142px;
     font-size: 16px;
@@ -88,19 +111,23 @@ form .button-search{
     color: white;
     text-align: center;
 }
+
 .docthem:hover,
-form .button-search:hover{
+form .button-search:hover {
     background-color: #ffc107;
     color: black;
 }
-.bg-F3EDFF{
+
+.bg-F3EDFF {
     background-color: #F3EDFF;
     border: none;
 }
-.b-after{
+
+.b-after {
     position: relative;
 }
-.b-after::after{
+
+.b-after::after {
     position: absolute;
     top: 110%;
     right: 0;
@@ -112,59 +139,145 @@ form .button-search:hover{
     display: block;
     background-color: black;
 }
-.img_info{
-    object-fit: cover;width: 100%;height: 100%; border-radius: 5px;
+
+.img_info {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
 }
-.font_title-post{
+
+.font_title-post {
     color: #6B6B6B;
     padding: 4px 8px;
     font-weight: 600;
     font-size: 18px;
     margin: 0;
 }
-.font_info-post{
+
+.font_info-post {
     font-weight: 600;
     font-size: 14px;
     line-height: 18px;
 }
 
 
-.bdr-info-post{
+.bdr-info-post {
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
 }
-.card-body{
-    padding: 2px!important;
+
+.card-body {
+    padding: 2px !important;
 }
-.li-phobien{
+
+.li-phobien {
     display: block;
     min-width: 50px;
 }
-.theloai-a{
-    width:100%;
+
+.theloai-a {
+    width: 100%;
     display: block;
     padding: 0 10px;
     text-decoration: none;
     color: #6B6B6B;
     font-weight: bold;
 }
-.theloai-a:hover{
+
+.theloai-a:hover {
     text-decoration: none;
     color: #00B4AA;
 }
-.theloai-li:hover{
+
+.theloai-li:hover {
     background-color: white;
     color: #00B4AA;
 }
-.color-6B6B6B{
+
+.color-6B6B6B {
     color: #6B6B6B;
 }
-.color-ffc107{
-    color: #ffc107!important;
+
+.color-ffc107 {
+    color: #ffc107 !important;
 }
-.bg-108dc7ef8e38{
-    background: linear-gradient(155deg,#d4fc79 6.67%, #96e6a1 90%);
+
+.bg-108dc7ef8e38 {
+    background: linear-gradient(155deg, #d4fc79 6.67%, #96e6a1 90%);
 }
-.phobien-a:hover{
+
+.phobien-a:hover {
     color: #ffc107;
+}
+
+.card_img:hover {
+    width: 100%;
+    height: 100%;
+    border-radius: unset;
+    transform: unset;
+    border: none;
+}
+
+.card-profile p {
+    color: #f2726a;
+}
+
+.card-profile button,
+.card-postsList button {
+    width: 120px;
+    height: 40px;
+    border: 1px solid #f2726a;
+    color: #f2726a;
+    background: transparent;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+
+.card-editDel button {
+    width: 60px;
+    height: 30px;
+}
+
+.card-profile button:hover,
+.card-postsList button:hover {
+    background: #f2726a;
+    color: white;
+
+}
+
+/* CSS Form cập nhật */
+.card-editProfile {
+    width: 500px;
+    height: 100%;
+    border: none;
+    border-radius: 10px;
+    background: white;
+    padding: 40px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.form-input {
+    width: 100%;
+    position: relative;
+    margin-top: 40px;
+}
+
+.form-input input {
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #adadad;
+}
+
+.form-input .line {
+    position: absolute;
+    border-bottom: 2px solid #2691d9;
+    left: 0;
+    top: 38px;
+    width: 100%;
 }

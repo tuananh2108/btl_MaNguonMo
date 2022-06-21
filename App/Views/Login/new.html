@@ -3,33 +3,62 @@
 {% block title %}Log in{% endblock %}
 
 {% block body %}
+<div class="authincation h-100 mt-5">
+    <div class="container-fluid h-100">
+        <div class="row justify-content-center h-100 align-items-center">
+            <div class="col-md-6">
+                <div class="authincation-content">
+                    <div class="row no-gutters">
+                        <div class="col-xl-12">
+                            <div class="auth-form">
 
-    <h1>Log in</h1>
+                                <h4 class="text-center mb-4">Đăng nhập tài khoản của bạn</h4>
 
-    <form action="/login/create" method="post">
+                                <form action="/login/create" method="post">
 
-        <div class="form-group">
-            <label for="inputEmail">Email address</label>
-            <input type="email" id="inputEmail" name="email" placeholder="Email address" autofocus value="{{ email }}" class="form-control" />
+                                    <div class="form-group">
+                                        <label for="inputEmail"><strong>Email</strong> </label>
+                                        <input type="email" id="inputEmail" name="email" placeholder="Email " autofocus value="{{ email }}" class="form-control" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputPassword"><strong>Password</strong></label>
+                                        <input type="password" id="inputPassword" name="password" placeholder="Password" class="form-control" />
+                                    </div>
+
+                                    <div class="form-row d-flex justify-content-between mt-4 mb-2">
+                                        <div class="form-group">
+                                            <div class="form-check ml-2 checkbox">
+                                                <label class="form-check-label">
+                                                    <input type="checkbox" class="form-check-input" name="remember_me"
+                                                           {% if remember_me %} checked="checked"{% endif %} />
+                                                    Remember me
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <a href="/password/forgot">Forgot password?</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-outline-info btn-block">Đăng nhập</button>
+                                    </div>
+
+                                    <div class="d-flex mt-3">
+                                        <p>Bạn chưa có tài khoản?</p>
+                                        <a href="/signup/new"> Đăng ký</a>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="inputPassword">Password</label>
-            <input type="password" id="inputPassword" name="password" placeholder="Password" class="form-control" />
-        </div>
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" name="remember_me" {% if remember_me %} checked="checked"{% endif %} /> Remember me
-            </label>
-        </div>
+    </div>
+</div>
 
-        <button type="submit" class="btn btn-default">Log in</button>
-        <a href="/password/forgot">Forgot password?</a>
 
-        <div class="d-flex">
-            <p>Bạn chưa có tài khoản?</p>
-            <a href="/signup/new">Sign up</a>
-        </div>
-
-    </form>
 
 {% endblock %}

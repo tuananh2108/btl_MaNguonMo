@@ -8,10 +8,10 @@
         <ul class="list-group list-group-flush bdr-ul">
             {% for post in posts %}
             <li class="list-group-item bg-F3EDFF border" style="padding: 0;">
-                <div class="card m-3 border border-primary shadow" style="padding: 1px 0px;">
+                <div class="card mb-3 border border-primary shadow" style="padding: 1px 0px;">
                     <div class="row no-gutters bg-F3EDFF d-flex justify-content-between">
                         <div class="col-md-4" style="width: 225px; max-height: 150px;">
-                            <img src="/img/{{ post.img_title }}" alt="{{ post.title }}" class="img_info">
+                            <a href="/posts/show?id={{ post.id }}" class="card-link"><img src="/img/{{ post.img_title }}" alt="{{ post.title }}" width="200px"></a>
                         </div>
                         <div class="col-md-8 flex-grow-1 d-flex flex-column">
                             <div class="card-body bg-F3EDFF bdr-info-post mr-3">

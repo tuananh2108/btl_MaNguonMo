@@ -39,39 +39,52 @@
 
 {% block body %}
 
-    <h1>Profile</h1>
+<body class="background">
+    <div class="card-editProfile ">
+        <h2 class="text-center mb-4">Cập nhật hồ sơ cá nhân</h2>
 
-    {% if user.errors is not empty %}
-        <p>Errors:</p>
-        <ul>
-            {% for error in user.errors %}
+        <form method="post" id="formProfile" action="/profile/update" enctype="multipart/form-data">
+            <div class="form-input">
+                <input id="inputAvatar" type="file" name="avatar" value="{{ user.avatar }}" class="form-control" />
+                <div class="line"></div>
+            </div>
+            <div class="form-input ">
+                <input id="inputName" name="name" placeholder="Name" value="{{ user.name }}" required />
+                <div class="line"></div>
+            </div>
+            <div class="form-input ">
+                <input id="inputEmail" name="email" placeholder="email address" value="{{ user.email }}" required type="email"  disabled />
+                <div class="line"></div>
+            </div>
+            <div class="form-input">
+                <input type="password" id="inputPassword" name="password" placeholder="Password" aria-describedby="helpBlock"  />
+                <div class="line"></div>
+                <span id="helpBlock" class="help-block">Để trống để giữ mật khẩu hiện tại.</span>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-6 text-left">
+                    <button type="submit" class=" btn btn-outline-info ">Lưu</button>
+                </div>
+
+                <div class="col-6 text-right">
+                    <a href="/profile/show"><button type="button" class=" btn btn-outline-info " >Thoát</button></a>
+                </div>
+            </div>
+
+            {% if user.errors is not empty %}
+            <p>Lỗi cập nhật:</p>
+            <ul>
+                {% for error in user.errors %}
                 <li>{{ error }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+                {% endfor %}
+            </ul>
+            {% endif %}
 
-    <form method="post" id="formProfile" action="/profile/update" enctype="multipart/form-data">
-        <div class="form-group">
-            <label for="inputAvatar">Avatar</label>
-            <input id="inputAvatar" type="file" name="avatar" value="{{ user.avatar }}" class="form-control" />
-        </div>
-        <div class="form-group">
-            <label for="inputName">Name</label>
-            <input id="inputName" name="name" placeholder="Name" value="{{ user.name }}" required class="form-control" />
-        </div>
-        <div class="form-group">
-            <label for="inputEmail">Email address</label>
-            <input id="inputEmail" name="email" placeholder="email address" value="{{ user.email }}" required type="email" class="form-control" disabled />
-        </div>
-        <div class="form-group">
-            <label for="inputPassword">Password</label>
-            <input type="password" id="inputPassword" name="password" placeholder="Password" aria-describedby="helpBlock" class="form-control" />
-            <span id="helpBlock" class="help-block">Leave blank to keep current password</span>
-        </div>
+        </form>
+    </div>
+</body>
 
-        <button type="submit" class="btn btn-default">Save</button>
-        <a href="/profile/show">Cancel</a>
 
-    </form>
 
 {% endblock %}
