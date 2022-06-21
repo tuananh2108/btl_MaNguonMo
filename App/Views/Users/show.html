@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Danh sách người dùng{% endblock %}
+
+{% block body %}
+
+<div class="row card">
+  <div class="card-body m-3">
+    <table class="table">
+      <thead class="thead-light">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Ảnh</th>
+        <th scope="col">Họ và Tên</th>
+        <th scope="col">Email</th>
+        <th scope="col">Ngày tham gia</th>
+        <th scope="col">Xóa</th>
+      </tr>
+      </thead>
+      <tbody>
+        <th scope="row">1</th>
+        <td><img src="/img/gaixinh.jpg" alt="" style="width:40px;height: 40px; border-radius: 100%;"></td>
+        <td>Truong</td>
+        <td>truong@gmail.com</td>
+        <td>11/02/2022</td>
+        <td class="" style="">
+          <a href="/categories/destroy?id={{ category.id }}" class="text-decoration-none" style="color: red; padding-left: 5px"><i class="ti-close"></i></a>
+        </td>
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

@@ -5,36 +5,38 @@
 {% block content %}
 
     <div class="col-8">
-        <ul class="list-group list-group-flush">
+        <ul class="list-group list-group-flush bdr-ul">
             {% for post in posts %}
-            <li class="list-group-item">
-                <div class="card mb-3">
-                    <div class="row no-gutters">
-                        <div class="col-md-4">
-                            <img src="/img/{{ post.img_title }}" alt="{{ post.title }}" width="200px">
+            <li class="list-group-item bg-F3EDFF border" style="padding: 0;">
+                <div class="card m-3 border border-primary shadow" style="padding: 1px 0px;">
+                    <div class="row no-gutters bg-F3EDFF d-flex justify-content-between">
+                        <div class="col-md-4" style="width: 225px; max-height: 150px;">
+                            <img src="/img/{{ post.img_title }}" alt="{{ post.title }}" class="img_info">
                         </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title"><a href="/posts/show?id={{ post.id }}">{{ post.title }}</a></h5>
-                                <h6 class="card-subtitle mb-2 text-muted d-inline-flex">
-                                    <a href="/profile/show?id={{ post.user_id }}" class="d-inline">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-                                            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-                                        </svg>
-                                        <span>{{ post.name }}</span>
-                                    </a>
-                                    <div class="d-inline">
+                        <div class="col-md-8 flex-grow-1 d-flex flex-column">
+                            <div class="card-body bg-F3EDFF bdr-info-post mr-3">
+                                <h5 class="card-title font_title-post"><a href="/posts/show?id={{ post.id }}">{{ post.title }}</a></h5>
+                                <div class="card-subtitle mb-2 text-muted d-flex justify-content-between align-items-center">
+                                        <a href="#" class="d-inline py-2 ml-2 font_info-post text-decoration-none d-flex justify-content-between align-items-center" style="color: black;">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                                            </svg>
+                                            <span class="ml-2">{{ post.name }}</span>
+                                        </a>
+                                    <div class="d-inline mr-3 py-2 font_info-post d-flex justify-content-between align-items-center" style="color: black;">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
                                             <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
                                         </svg>
-                                        <span>{{ post.created_at }}</span>
+                                        <span class="ml-2">{{ post.created_at }}</span>
                                     </div>
-                                </h6>
-                                <p class="card-text">{{ post.content }}</p>
-                                <a href="/posts/show?id={{ post.id }}" class="card-link">
-                                    Đọc thêm
-                                    <span aria-hidden="true">&raquo;</span>
-                                </a>
+                                </div>
+                                <p class="ml-2" style="height:24px; width: 422px;white-space: nowrap;overflow:hidden;text-overflow:ellipsis;">{{ post.content }}</p>
+                                <div class="d-flex flex-row-reverse mb-2 mr-2">
+                                    <a href="/posts/show?id={{ post.id }}" class="card-link docthem">
+                                        Xem chi tiết
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -43,19 +45,19 @@
             {% endfor %}
         </ul>
         <div class="clearfix"></div>
-        <div>
+        <div class="d-flex justify-content-center">
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
+                    <li class="page-item li-phobien">
+                        <a class="page-link text-center" href="#" aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
+                    <li class="page-item li-phobien"><a class="page-link text-center" href="#">1</a></li>
+                    <li class="page-item li-phobien"><a class="page-link text-center" href="#">2</a></li>
+                    <li class="page-item li-phobien"><a class="page-link text-center" href="#">3</a></li>
+                    <li class="page-item li-phobien">
+                        <a class="page-link text-center" href="#" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                         </a>
                     </li>

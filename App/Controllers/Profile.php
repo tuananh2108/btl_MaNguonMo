@@ -70,7 +70,7 @@ class Profile extends Authenticated
         Auth::uploadImage('avatar');
         if ($this->user->updateProfile($_POST)) {
 
-            Flash::addMessage('Changes saved');
+            Flash::addMessage('Cập nhật thành công');
 
             $this->redirect('/profile/show');
 

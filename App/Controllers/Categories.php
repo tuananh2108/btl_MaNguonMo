@@ -20,9 +20,9 @@ class Categories extends \Core\Controller
     {
         $category = new Category($_POST);
         if ($category->save()) {
-            Flash::addMessage('Successfully added new!');
+            Flash::addMessage('Thêm mới thành công!');
         } else {
-            Flash::addMessage('New addition failed!');
+            Flash::addMessage('Có lỗi! Thêm mới thất bại!');
         }
         $this->redirect('/categories/show');
     }
@@ -42,11 +42,11 @@ class Categories extends \Core\Controller
     {
         $category = new Category();
         if ($category->update($_POST)) {
-            Flash::addMessage('Changes saved');
+            Flash::addMessage('Cập nhật thành công!');
             $this->redirect('/categories/show');
 
         } else {
-            Flash::addMessage('Changes failed!');
+            Flash::addMessage('Có lỗi! Cập nhật thất bại!');
             $this->redirect('/categories/show');
         }
     }
@@ -55,9 +55,9 @@ class Categories extends \Core\Controller
     {
         $category = new Category();
         if ($category->delete($_GET)) {
-            Flash::addMessage('Successfully deleted new!');
+            Flash::addMessage('Đã xoá thành công!');
         } else {
-            Flash::addMessage('Delete failed!');
+            Flash::addMessage('Có lỗi! Xoá thất bại!');
         }
         $this->redirect('/categories/show');
     }

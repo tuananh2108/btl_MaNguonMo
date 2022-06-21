@@ -30,9 +30,9 @@ class Posts extends \Core\Controller
         $post = new Post($_POST);
 
         if ($post->save()) {
-            Flash::addMessage('Successfully added new!');
+            Flash::addMessage('Thêm mới thành công!');
         } else {
-            Flash::addMessage('New addition failed!');
+            Flash::addMessage('Có lỗi! Thêm mới thất bại!');
         }
         $this->redirect('/posts/new');
 //        View::renderTemplate('Posts/new.html');
