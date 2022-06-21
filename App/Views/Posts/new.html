@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}New Posts{% endblock %}
+
+{% block body %}
+
+<h1>New Posts</h1>
+
+<form method="post" action="/posts/create">
+
+    <div class="form-group">
+        <label for="inputTitle">Title</label>
+        <input id="inputTitle" name="title" placeholder="Title Posts" autofocus required class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="inputContent">Content</label>
+        <textarea id="inputContent" name="content" rows="10" class="form-control"></textarea>
+    </div>
+    <div class="form-group">
+        <input type="hidden" name="user_id" value="{{ current_user.id }}">
+        <input type="submit" name="submit" value="Add new" class="btn btn-primary">
+    </div>
+
+</form>
+
+{% endblock %}

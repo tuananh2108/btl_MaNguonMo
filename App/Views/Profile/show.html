@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}Profile{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-4">
+            <h1>Profile</h1>
+
+            <dl class="dl-horizontal">
+                <dt>Name</dt>
+                <dd>{{ user.name }}</dd>
+                <dt>email</dt>
+                <dd>{{ user.email }}</dd>
+            </dl>
+
+            <a href="/profile/edit">Edit</a>
+        </div>
+        <div class="col-8">
+            <h1>Danh sách bài viết cá nhân</h1>
+            <div>
+                <a href="/posts/new">Thêm bài viết</a>
+            </div>
+            <div>
+                <ul class="list-group list-group-flush">
+                    {% for post in posts %}
+                        <li class="list-group-item">
+                            <div class="card mb-3">
+                                <div class="row no-gutters">
+                                    <div class="col-md-4">
+                                        <img src="..." alt="...">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ post.title }}</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+            <div>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+{% endblock %}
